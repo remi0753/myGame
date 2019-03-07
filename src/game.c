@@ -24,6 +24,7 @@ void gameInit(int *argc, char **argv){
       allScene[SCENE_MENU].m_update,
       allScene[SCENE_MENU].m_display,
       allScene[SCENE_MENU].m_parameter);
+  glutDisplayFunc(allScene[SCENE_MENU].m_display);
 }
 
 void gameRun(){
@@ -50,6 +51,7 @@ void changeScene(enum eScene s, unsigned char *p, int clear){
     allScene[s].m_update,
     allScene[s].m_display,
     p);
+  glutDisplayFunc(allScene[s].m_display);
 
   switch (s) {
     case SCENE_MENU:

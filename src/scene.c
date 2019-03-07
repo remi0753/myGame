@@ -11,7 +11,6 @@ void sceneStackPush(sceneStack_t *stk, updateFunc update, displayFunc display, u
     for (int i = 0; i < SCENE_PARAMETER_MAX; i++)
       stk->m_scene[t].m_parameter[i] = p[i];
 
-    glutDisplayFunc(display);
   } else {
     //スタックプッシュエラー
   }
