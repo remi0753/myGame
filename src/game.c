@@ -12,6 +12,7 @@ void gameInit(int *argc, char **argv){
 }
 
 void gameRun(){
+  // test message
   glutMainLoop();
 }
 
