@@ -2,13 +2,28 @@
 
 #include <GL/glut.h>
 #include "define.h"
-#include "display.h"
+#include "scene.h"
+#include "sceneMenu.h"
+#include "sceneGame.h"
+
+static sceneStack_t stk;
+static scene_t allScene[SCENE_MAX] = {
+  {sceneMenuUpdate, sceneMenuDispaly, 0},  //sceneMenu
+  {sceneGameUpdate, sceneGameDispaly, 0}   //sceneGame
+};
 
 void glInit(int *argc, char **argv);
-
+void gameLoop();
 
 void gameInit(int *argc, char **argv){
   glInit(argc, argv);
+  sceneStackInit(&stk);
+  unsigned char p[3] = {};
+  sceneStackPush(
+      &stk, 
+      allScene[SCENE_MENU].m_update,
+      allScene[SCENE_MENU].m_display,
+      allScene[SCENE_MENU].m_parameter);
 }
 
 void gameRun(){
@@ -23,5 +38,31 @@ void glInit(int *argc, char **argv){
   glutInitWindowPosition(100, 100);
   glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
   glutCreateWindow("myGame");
-  glutDisplayFunc(displayMain);
+  glutIdleFunc(gameLoop);
+}
+
+void changeScene(enum eScene s, unsigned char *p, int clear){
+  if (clear)
+    sceneStackInit(&stk);
+
+  sceneStackPush(
+    &stk, 
+    allScene[s].m_update,
+    allScene[s].m_display,
+    p);
+
+  switch (s) {
+    case SCENE_MENU:
+      break;
+    case SCENE_GAME:
+      sceneGameInit(p);
+      break;
+    default:
+      // error
+      break;
+  }
+}
+
+void gameLoop(){
+  sceneStackTop(&stk)->m_update(changeScene);
 }
