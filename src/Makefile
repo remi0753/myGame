@@ -1,20 +1,40 @@
-main: main.c game.o sceneMenu.o sceneGame.o font.o scene.o
-	gcc main.c game.o sceneMenu.o sceneGame.o font.o scene.o -o main -lglut -lGLU -lGL
+# Makefile_other
 
-game.o: game.c game.h
-	gcc -c game.c -o game.o -lglut -lGLU -lGL
+# プログラム名とオブジェクトファイル名
+PROGRAM = main
+OBJS = \
+game.o \
+font.o \
+key.o \
+scene.o \
+sceneMenu.o \
+sceneGame.o
 
-font.o: font.c font.h
-	gcc -c font.c -o font.o -lglut -lGLU -lGL
+# 定義済みマクロの再定義
+CC = gcc
+CFLAGS = -lglut -lGLU -lGL
 
-scene.o: scene.c scene.h
-	gcc -c scene.c -o scene.o -lglut -lGLU -lGL
+# サフィックスルール適用対象の拡張子の定義
+.SUFFIXES: .c .o
 
-sceneMenu.o: sceneMenu.c sceneMenu.h 
-	gcc -c sceneMenu.c -o sceneMenu.o -lglut -lGLU -lGL
+# プライマリターゲット
+$(PROGRAM): $(OBJS)
+	$(CC) $(PROGRAM).c -o $(PROGRAM) $^ $(CFLAGS)
 
-sceneGame.o: sceneGame.c sceneGame.h 
-	gcc -c sceneGame.c -o sceneGame.o -lglut -lGLU -lGL
+# サフィックスルール
+.c.o:
+	$(CC) -c $< $(CFLAGS)
 
+# ファイル削除用ターゲット
+.PHONY: clean
 clean:
-	rm -rf main *.o
+	$(RM) $(PROGRAM) $(OBJS)
+
+# ヘッダファイルの依存関係
+main.o: game.h
+game.o: define.h game.h key.h scene.h sceneMenu.h sceneGame.h
+key.o: key.h
+font.o: font.h
+scene.o: scene.h
+sceneMenu.o: sceneMenu.h
+sceneGame.o: sceneMenu.h
