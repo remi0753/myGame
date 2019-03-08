@@ -3,7 +3,7 @@
 #include <GL/glut.h>
 #include <stdio.h>
 
-static unsigned char keys[256];
+static unsigned char keys[256] = {};
 
 void keyboard(unsigned char key, int x, int y);
 void keyboardUp(unsigned char key, int x, int y);
