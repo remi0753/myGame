@@ -5,10 +5,11 @@ font.o \
 key.o \
 scene.o \
 sceneMenu.o \
-sceneGame.o
+sceneGame.o \
+fps.o
 
 CC = gcc
-CFLAGS = -lglut -lGLU -lGL
+CFLAGS = -lglut -lGLU -lGL -lm
 
 .SUFFIXES: .c .o
 
@@ -28,3 +29,4 @@ font.o: font.h
 scene.o: scene.h
 sceneMenu.o: sceneMenu.h
 sceneGame.o: sceneMenu.h
+fps.o: fps.h
