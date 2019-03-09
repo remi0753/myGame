@@ -3,6 +3,7 @@
 #include <GL/glut.h>
 #include "define.h"
 #include "scene.h"
+#include "key.h"
 #include "sceneMenu.h"
 #include "sceneGame.h"
 
@@ -17,6 +18,7 @@ void gameLoop();
 
 void gameInit(int *argc, char **argv){
   glInit(argc, argv);
+  keyInit();
   sceneStackInit(&stk);
   unsigned char p[3] = {};
   sceneStackPush(
