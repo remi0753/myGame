@@ -5,7 +5,7 @@
 
 void fpsInit();
 void fpsWait();
-void fpsDraw();
+float fpsGet();
 
 
 #endif

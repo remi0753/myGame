@@ -37,9 +37,12 @@ void sceneMenuDispaly(){
     fontSetColor(0, 255, 0);
     fontDraw("key 'a' is pushed");
   }
+  fontSetPosition(500.0, 400.0);
+  fontSetSize(FONT_DEFAULT_SIZE * 0.15);
+  fontSetWeight(1.0);
+  fontSetColor(255, 255, 255);
+  fontDraw("fps:%.1f", fpsGet());
   fontEnd();
-
-  fpsDraw();
 
   glutSwapBuffers();
 }

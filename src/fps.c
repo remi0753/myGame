@@ -47,14 +47,8 @@ void fpsWait(){
   }
 }
 
-void fpsDraw(){
-  fontBegin();
-  fontSetPosition(500, 400);
-  fontSetSize(FONT_DEFAULT_SIZE * 0.15);
-  fontSetWeight(1.0);
-  fontSetColor(255, 255, 255);
-  fontDraw("fps:%.1f", fps);
-  fontEnd();
+float fpsGet(){
+  return fps;
 }
 
 unsigned int waitTime(){
