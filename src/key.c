@@ -23,12 +23,12 @@ int keyGetState(unsigned char key){
 }
 
 void keyboard(unsigned char key, int x, int y){
-  printf("keyboard: \"%c\"(%#x)\n", key, key);
+  //printf("keyboard: \"%c\"(%#x)\n", key, key);
   keys[key] = 1;
 }
 
 void keyboardUp(unsigned char key, int x, int y){
-  printf("keyboardUp: \"%c\"(%#x)\n", key, key);
+  //printf("keyboardUp: \"%c\"(%#x)\n", key, key);
   keys[key] = 0;
 }
 

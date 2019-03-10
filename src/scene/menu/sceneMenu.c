@@ -35,6 +35,13 @@ void sceneMenuDispaly(){
     fontSetColor(0, 255, 0);
     fontDraw("key 'a' is pushed");
   }
+  if (keyGetState(KEY_UP)) {
+    fontSetPosition(0.0, 250.0);
+    fontSetSize(FONT_DEFAULT_SIZE * 0.25);
+    fontSetWeight(1.0);
+    fontSetColor(0, 255, 0);
+    fontDraw("key UP is pushed");
+  }
   fontSetPosition(500.0, 400.0);
   fontSetSize(FONT_DEFAULT_SIZE * 0.15);
   fontSetWeight(1.0);
