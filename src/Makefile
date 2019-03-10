@@ -4,8 +4,8 @@ game.o \
 font.o \
 key.o \
 scene.o \
-sceneMenu.o \
-sceneGame.o \
+scene/sceneMenu.o \
+scene/sceneGame.o \
 timeUtils.o \
 fps.o
 
@@ -18,7 +18,7 @@ $(PROGRAM): $(OBJS)
 	$(CC) $(PROGRAM).c -o $(PROGRAM) $^ $(CFLAGS)
 
 .c.o:
-	$(CC) -c $< $(CFLAGS)
+	$(CC) -c $< $(CFLAGS) -o $@
 
 .PHONY: clean
 clean:

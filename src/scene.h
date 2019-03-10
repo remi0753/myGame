@@ -2,7 +2,6 @@
 
 #define ___HEADER_SCENE
 
-
 enum eScene {
   SCENE_MENU,
   SCENE_GAME,

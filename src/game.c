@@ -3,11 +3,10 @@
 #include <GL/glut.h>
 #include "define.h"
 #include "scene.h"
+#include "allScene.h"
 #include "key.h"
 #include "fps.h"
 #include "timeUtils.h"
-#include "sceneMenu.h"
-#include "sceneGame.h"
 
 static sceneStack_t stk;
 static scene_t allScene[SCENE_MAX] = {
@@ -24,6 +23,7 @@ void gameInit(int *argc, char **argv){
   timeUtilsInit();
   fpsInit();
   sceneStackInit(&stk);
+
   unsigned char p[3] = {};
   sceneStackPush(
       &stk, 
