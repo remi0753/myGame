@@ -1,7 +1,7 @@
 #include "sceneGame.h"
 
 #include <GL/glut.h>
-#include "gameUtils.h"
+#include "../gameUtils.h"
 
 static int count = 0;
 static unsigned char param[SCENE_PARAMETER_MAX];

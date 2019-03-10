@@ -4,8 +4,8 @@ game.o \
 font.o \
 key.o \
 scene.o \
-scene/sceneMenu.o \
-scene/sceneGame.o \
+scene/menu/sceneMenu.o \
+scene/game/sceneGame.o \
 timeUtils.o \
 fps.o
 

@@ -3,8 +3,8 @@
 #define ___HEADER_ALLSCENE
 
 
-#include "./scene/sceneMenu.h"
-#include "./scene/sceneGame.h"
+#include "./scene/menu/sceneMenu.h"
+#include "./scene/game/sceneGame.h"
 
 
 #endif
