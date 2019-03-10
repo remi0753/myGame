@@ -5,6 +5,7 @@
 #include "scene.h"
 #include "key.h"
 #include "fps.h"
+#include "timeUtils.h"
 #include "sceneMenu.h"
 #include "sceneGame.h"
 
@@ -20,6 +21,7 @@ void gameLoop();
 void gameInit(int *argc, char **argv){
   glInit(argc, argv);
   keyInit();
+  timeUtilsInit();
   fpsInit();
   sceneStackInit(&stk);
   unsigned char p[3] = {};

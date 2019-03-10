@@ -1,11 +1,9 @@
 #include "fps.h"
 
-#include <time.h>
-#include <sys/time.h>
 #include <unistd.h>
-#include <math.h>
 #include "font.h"
 #include <GL/glut.h>
+#include "timeUtils.h"
 
 #define FPS 60
 #define UPDATE_INTERVAL 60
@@ -18,14 +16,12 @@ typedef struct stock_ {
   int m_oldestPos;
 } stock_t;
 
-static struct timeval start;
 static int count;
 static float fps;
 static stock_t stockTime;
 
 unsigned int waitTime();
 void regist();
-unsigned int getMilliSecond();
 void updateFps();
 
 void fpsInit(){
@@ -34,7 +30,6 @@ void fpsInit(){
   stockTime.m_pos = 0;
   stockTime.m_len = 0;
   stockTime.m_oldestPos = 0;
-  gettimeofday(&start, NULL);
 }
 
 void fpsWait(){
@@ -56,36 +51,29 @@ unsigned int waitTime(){
   if (len == 0)
     return 0;
 
-  int calcTime = (unsigned int)(1000.f / 60.f * len);
-  int realTime = getMilliSecond() - stockTime.m_d[stockTime.m_oldestPos];
+  int calcTime = (int)(1000.f / 60.f * len);
+  int realTime = timeUtilsGetMilliSeconds() - stockTime.m_d[stockTime.m_oldestPos];
   int wait = calcTime - realTime;
   if (wait < 0) wait = 0;
-  return wait;
+  return (unsigned int)wait;
 }
 
 void regist(){
-  stockTime.m_d[stockTime.m_pos] = getMilliSecond();
+  stockTime.m_d[stockTime.m_pos] = timeUtilsGetMilliSeconds();
   stockTime.m_pos++;
   if (stockTime.m_pos == STOCK_MAX)
     stockTime.m_pos = 0;
-  if (stockTime.m_len < (STOCK_MAX - 1))
+  if (stockTime.m_len < STOCK_MAX)
     stockTime.m_len++;
   else
     stockTime.m_oldestPos = stockTime.m_pos;
 }
 
-unsigned int getMilliSecond(){
-  struct timeval tv;
-  gettimeofday(&tv, NULL);
-  time_t diffsec = difftime(tv.tv_sec, start.tv_sec);
-  suseconds_t diffusec = tv.tv_usec - start.tv_usec;
-  return (unsigned int)diffsec * 1000 + (unsigned int)(diffusec / 1000);
-}
-
 void updateFps(){
   int len = stockTime.m_len;
-  if (len < (STOCK_MAX - 1))
+  if (len < STOCK_MAX)
     return;
+
   int op = stockTime.m_oldestPos;
   unsigned int realTime = op == 0 ?
     stockTime.m_d[STOCK_MAX - 1] - stockTime.m_d[0] :
