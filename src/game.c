@@ -6,7 +6,6 @@
 #include "allScene.h"
 #include "key.h"
 #include "fps.h"
-#include "timeUtils.h"
 
 static sceneStack_t stk;
 static scene_t allScene[SCENE_MAX] = {
@@ -20,7 +19,6 @@ void gameLoop();
 void gameInit(int *argc, char **argv){
   glInit(argc, argv);
   keyInit();
-  timeUtilsInit();
   fpsInit();
   sceneStackInit(&stk);
 
@@ -70,7 +68,6 @@ void changeScene(enum eScene s, unsigned char *p, int clear){
       break;
   }
 }
-
 void gameLoop(){
   sceneStackTop(&stk)->m_update(changeScene);
   fpsWait();

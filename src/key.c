@@ -3,7 +3,7 @@
 #include <GL/glut.h>
 #include <stdio.h>
 
-static unsigned char keys[256] = {};
+static unsigned char keys[256];
 
 void keyboard(unsigned char key, int x, int y);
 void keyboardUp(unsigned char key, int x, int y);
@@ -16,6 +16,8 @@ void keyInit(){
   glutSpecialFunc(specialKey);
   glutSpecialUpFunc(specialKeyUp);
   glutIgnoreKeyRepeat(GL_TRUE);
+  for (int i = 0; i < 256; i++)
+    keys[i] = 0;
 }
 
 int keyGetState(unsigned char key){
@@ -25,15 +27,11 @@ int keyGetState(unsigned char key){
 void keyboard(unsigned char key, int x, int y){
   //printf("keyboard: \"%c\"(%#x)\n", key, key);
   keys[key] = 1;
-  if (glutGetModifiers() == GLUT_ACTIVE_SHIFT)
-    keys[KEY_SHIFT] = 1;
 }
 
 void keyboardUp(unsigned char key, int x, int y){
   //printf("keyboardUp: \"%c\"(%#x)\n", key, key);
   keys[key] = 0;
-  if (keys[KEY_SHIFT] && glutGetModifiers() != GLUT_ACTIVE_SHIFT)
-    keys[KEY_SHIFT] = 0;
 }
 
 void specialKey(int key, int x, int y){
@@ -49,8 +47,6 @@ void specialKey(int key, int x, int y){
   if (key == GLUT_KEY_RIGHT) {
     keys[KEY_RIGHT] = 1;
   }
-  if (glutGetModifiers() == GLUT_ACTIVE_SHIFT)
-    keys[KEY_SHIFT] = 1;
 }
 
 void specialKeyUp(int key, int x, int y){
@@ -66,6 +62,4 @@ void specialKeyUp(int key, int x, int y){
   if (key == GLUT_KEY_RIGHT) {
     keys[KEY_RIGHT] = 0;
   }
-  if (keys[KEY_SHIFT] && glutGetModifiers() != GLUT_ACTIVE_SHIFT)
-    keys[KEY_SHIFT] = 0;
 }

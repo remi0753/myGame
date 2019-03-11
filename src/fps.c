@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include "font.h"
 #include <GL/glut.h>
-#include "timeUtils.h"
 
 #define FPS 60
 #define UPDATE_INTERVAL 60
@@ -30,6 +29,8 @@ void fpsInit(){
   stockTime.m_pos = 0;
   stockTime.m_len = 0;
   stockTime.m_oldestPos = 0;
+  for (int i = 0; i < STOCK_MAX; i++)
+    stockTime.m_d[i] = 0;
 }
 
 void fpsWait(){
@@ -51,15 +52,19 @@ unsigned int waitTime(){
   if (len == 0)
     return 0;
 
-  int calcTime = (int)(1000.f / 60.f * len);
-  int realTime = timeUtilsGetMilliSeconds() - stockTime.m_d[stockTime.m_oldestPos];
-  int wait = calcTime - realTime;
+  float calcTime = 1000.f / (float)FPS * ((float)len);
+  int realTime = 
+    glutGet(GLUT_ELAPSED_TIME) - (int)stockTime.m_d[stockTime.m_oldestPos];
+  float wait = calcTime - (float)realTime;
+  if (wait > 17){
+    wait = 17;
+  }
   if (wait < 0) wait = 0;
   return (unsigned int)wait;
 }
 
 void regist(){
-  stockTime.m_d[stockTime.m_pos] = timeUtilsGetMilliSeconds();
+  stockTime.m_d[stockTime.m_pos] = (unsigned int)glutGet(GLUT_ELAPSED_TIME);
   stockTime.m_pos++;
   if (stockTime.m_pos == STOCK_MAX)
     stockTime.m_pos = 0;
@@ -74,11 +79,11 @@ void updateFps(){
   if (len < STOCK_MAX)
     return;
 
-  int op = stockTime.m_oldestPos;
+  const int op = stockTime.m_oldestPos;
   unsigned int realTime = op == 0 ?
     stockTime.m_d[STOCK_MAX - 1] - stockTime.m_d[0] :
     stockTime.m_d[op - 1] - stockTime.m_d[op];
-  float average = (float)realTime / (float)STOCK_MAX;
+  float average = (float)realTime / (float)(STOCK_MAX - 1);
   if (average == 0)
     return;
   fps = 1000.f / average;
