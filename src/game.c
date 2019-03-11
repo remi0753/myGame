@@ -41,7 +41,7 @@ void gameRun(){
 void glInit(int *argc, char **argv){
   //initialization
   glutInit(argc, argv);
-  glutInitDisplayMode(GLUT_DOUBLE);
+  glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
   glutInitWindowPosition(500, 100);
   glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
   glutCreateWindow("myGame");

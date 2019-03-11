@@ -4,10 +4,13 @@ game.o \
 font.o \
 key.o \
 scene.o \
+shape/rect.o \
+shape/ball.o \
 scene/menu/sceneMenu.o \
 scene/game/sceneGame.o \
 timeUtils.o \
-fps.o
+fps.o \
+player.o
 
 CC = gcc
 CFLAGS = -lglut -lGLU -lGL -lm
@@ -32,3 +35,6 @@ sceneMenu.o: sceneMenu.h
 sceneGame.o: sceneMenu.h
 timeUtils.o: timeUtils.h
 fps.o: fps.h
+rect.o: rect.h
+ball.o: ball.h
+player.o: player.h
