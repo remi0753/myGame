@@ -8,7 +8,6 @@ shape/rect.o \
 shape/ball.o \
 scene/menu/sceneMenu.o \
 scene/game/sceneGame.o \
-timeUtils.o \
 fps.o \
 player.o
 
@@ -33,7 +32,6 @@ font.o: font.h
 scene.o: scene.h
 sceneMenu.o: sceneMenu.h
 sceneGame.o: sceneMenu.h
-timeUtils.o: timeUtils.h
 fps.o: fps.h
 rect.o: rect.h
 ball.o: ball.h
