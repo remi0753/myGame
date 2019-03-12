@@ -6,6 +6,7 @@
 typedef struct player_ {
   float m_x;
   float m_y;
+  int m_slow;
 } player_t;
 
 void playerInit(player_t *player);

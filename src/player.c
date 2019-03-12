@@ -8,7 +8,12 @@
 
 static const float PLAYER_SPEED = 6.0f;
 static const float PLAYER_RECT_SIZE = 15.0f;
-static const float PLAYER_BALL_R = 4.0f;
+static const unsigned char PLAYER_RECT_COLOR[3] = {230, 230, 230};
+static const float PLAYER_CENTER_BALL_R = 4.0f;
+static const unsigned char PLAYER_CENTER_BALL_COLOR[3] = {255, 100, 100};
+static const float PLAYER_SIDE_BALL_POSITION = 16.0f;
+static const float PLAYER_SIDE_BALL_R = 4.5f;
+static const unsigned char PLAYER_SIDE_BALL_COLOR[3] = {64, 64, 255};
 static const float PLAYER_FIRST_POSITION_X = 200.0f;
 static const float PLAYER_FIRST_POSITION_Y = 400.0f;
 
@@ -33,32 +38,39 @@ void playerDraw(const player_t *player){
            PLAYER_RECT_SIZE,
            PLAYER_RECT_SIZE,
            (float)(count % 360),
-           240,
-           240,
-           240);
-  ballDraw(player->m_x,
+           PLAYER_RECT_COLOR[0],
+           PLAYER_RECT_COLOR[1],
+           PLAYER_RECT_COLOR[2]);
+
+  if (player->m_slow)
+    ballDraw(player->m_x,
+             player->m_y,
+             PLAYER_CENTER_BALL_R,
+             PLAYER_CENTER_BALL_COLOR[0],
+             PLAYER_CENTER_BALL_COLOR[1],
+             PLAYER_CENTER_BALL_COLOR[2]);
+
+  ballDraw(player->m_x - PLAYER_SIDE_BALL_POSITION,
            player->m_y,
-           PLAYER_BALL_R,
-           255,
-           128,
-           128);
-  ballDraw(player->m_x - 15.0f,
+           PLAYER_SIDE_BALL_R,
+           PLAYER_SIDE_BALL_COLOR[0],
+           PLAYER_SIDE_BALL_COLOR[1],
+           PLAYER_SIDE_BALL_COLOR[2]);
+  ballDraw(player->m_x + PLAYER_SIDE_BALL_POSITION,
            player->m_y,
-           5.0f,
-           64,
-           64,
-           255);
-  ballDraw(player->m_x + 15.0f,
-           player->m_y,
-           5.0f,
-           64,
-           64,
-           255);
+           PLAYER_SIDE_BALL_R,
+           PLAYER_SIDE_BALL_COLOR[0],
+           PLAYER_SIDE_BALL_COLOR[1],
+           PLAYER_SIDE_BALL_COLOR[2]);
 }
 
 void move(player_t *player){
   float x = 0.0f;
   float y = 0.0f;
+  if (keyGetState('v'))
+    player->m_slow = 1;
+  if (!keyGetState('v') && player->m_slow)
+    player->m_slow = 0;
   if (keyGetState(KEY_UP))
     y -= PLAYER_SPEED;
 
@@ -76,7 +88,7 @@ void move(player_t *player){
     y /= (float)sqrt(2.0);
   }
 
-  if (keyGetState('v')){
+  if (player->m_slow){
     x /= 3.0f;
     y /= 3.0f;
   }

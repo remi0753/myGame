@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "font.h"
 #include <GL/glut.h>
+//#include <stdio.h>
 
 #define FPS 60
 #define UPDATE_INTERVAL 60
@@ -56,6 +57,7 @@ unsigned int waitTime(){
   int realTime = 
     glutGet(GLUT_ELAPSED_TIME) - (int)stockTime.m_d[stockTime.m_oldestPos];
   float wait = calcTime - (float)realTime;
+  //printf("%.2f\n", wait);
   if (wait > 17){
     wait = 17;
   }
