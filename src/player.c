@@ -5,6 +5,7 @@
 #include <GL/glut.h>
 #include "./shape/rect.h"
 #include "./shape/ball.h"
+#include "./scene/game/gameField.h"
 
 static const float PLAYER_SPEED = 6.0f;
 static const float PLAYER_RECT_SIZE = 15.0f;
@@ -16,6 +17,12 @@ static const float PLAYER_SIDE_BALL_R = 4.5f;
 static const unsigned char PLAYER_SIDE_BALL_COLOR[3] = {64, 64, 255};
 static const float PLAYER_FIRST_POSITION_X = 200.0f;
 static const float PLAYER_FIRST_POSITION_Y = 400.0f;
+
+
+#define PLAYER_MOVE_MIN_X (FIELD_START_X + PLAYER_SIDE_BALL_R + PLAYER_SIDE_BALL_POSITION)
+#define PLAYER_MOVE_MIN_Y (FIELD_START_Y + PLAYER_RECT_SIZE * sqrt(2.0) * 0.5f)
+#define PLAYER_MOVE_MAX_X (FIELD_START_X + FIELD_SIZE_X - (PLAYER_SIDE_BALL_R + PLAYER_SIDE_BALL_POSITION))
+#define PLAYER_MOVE_MAX_Y (FIELD_START_Y + FIELD_SIZE_Y - PLAYER_RECT_SIZE * sqrt(2.0) * 0.5f)
 
 static int count;
 
@@ -93,6 +100,10 @@ void move(player_t *player){
     y /= 3.0f;
   }
 
-  player->m_x += x;
-  player->m_y += y;
+  float px = player->m_x + x;
+  float py = player->m_y + y;
+  if (PLAYER_MOVE_MIN_X <= px && px <= PLAYER_MOVE_MAX_X)
+    player->m_x = px;
+  if (PLAYER_MOVE_MIN_Y <= py && py <= PLAYER_MOVE_MAX_Y)
+    player->m_y = py;
 }
