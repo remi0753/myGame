@@ -4,30 +4,56 @@
 #include "../../shape/rect.h"
 #include "gameField.h"
 
+const static float BOARD_ROGO_1_POSITION_X = 425.0f;
+const static float BOARD_ROGO_1_POSITION_Y = 305.0f;
+const static float BOARD_ROGO_1_SIZE = 0.3f;
+const static float BOARD_ROGO_1_WEIGHT = 4.0f;
+const static unsigned char BOARD_ROGO_1_COLOR[3] = {255, 150, 150};
+const static char BOARD_ROGO_1_STRING[8] = "DANMAKU";
+const static float BOARD_ROGO_2_POSITION_X = 440.0f;
+const static float BOARD_ROGO_2_POSITION_Y = 340.0f;
+const static float BOARD_ROGO_2_SIZE = 0.3f;
+const static float BOARD_ROGO_2_WEIGHT = 4.0f;
+const static unsigned char BOARD_ROGO_2_COLOR[3] = {255, 255, 100};
+const static char BOARD_ROGO_2_STRING[9] = "SHOOTING";
+const static float BOARD_ROGO_3_POSITION_X = 430.0f;
+const static float BOARD_ROGO_3_POSITION_Y = 380.0f;
+const static float BOARD_ROGO_3_SIZE = 0.12f;
+const static float BOARD_ROGO_3_WEIGHT = 1.0f;
+const static unsigned char BOARD_ROGO_3_COLOR[3] = {210, 210, 210};
+const static char BOARD_ROGO_3_STRING[23] = "- respect for touhou -";
+const static float BOARD_FPS_POSITION_X = 550.0f;
+const static float BOARD_FPS_POSITION_Y = 440.0f;
+const static float BOARD_FPS_SIZE = 0.15f;
+const static float BOARD_FPS_WEIGHT = 2.0f;
+const static unsigned char BOARD_FPS_COLOR[3] = {210, 210, 210};
+
+const static unsigned char FIELD_COLOR[3] = {10, 10, 10};
+
 void drawBoard(){
   fontBegin();
   //rogo
-  fontSetPosition(425.0, 305.0);
-  fontSetSize(FONT_DEFAULT_SIZE * 0.3);
-  fontSetWeight(4.0);
-  fontSetColor(255, 150, 150);
-  fontDraw("DANMAKU");
-  fontSetPosition(440.0, 340.0);
-  fontSetSize(FONT_DEFAULT_SIZE * 0.3);
-  fontSetWeight(4.0);
-  fontSetColor(255, 255, 100);
-  fontDraw("SHOOTING");
-  fontSetPosition(430.0, 380.0);
-  fontSetSize(FONT_DEFAULT_SIZE * 0.12);
-  fontSetWeight(1.0);
-  fontSetColor(200, 200, 200);
-  fontDraw("- respect for touhou -");
+  fontSetPosition(BOARD_ROGO_1_POSITION_X, BOARD_ROGO_1_POSITION_Y);
+  fontSetSize(FONT_DEFAULT_SIZE * BOARD_ROGO_1_SIZE);
+  fontSetWeight(BOARD_ROGO_1_WEIGHT);
+  fontSetColor(BOARD_ROGO_1_COLOR[0], BOARD_ROGO_1_COLOR[1], BOARD_ROGO_1_COLOR[2]);
+  fontDraw(BOARD_ROGO_1_STRING);
+  fontSetPosition(BOARD_ROGO_2_POSITION_X, BOARD_ROGO_2_POSITION_Y);
+  fontSetSize(FONT_DEFAULT_SIZE * BOARD_ROGO_2_SIZE);
+  fontSetWeight(BOARD_ROGO_2_WEIGHT);
+  fontSetColor(BOARD_ROGO_2_COLOR[0], BOARD_ROGO_2_COLOR[1], BOARD_ROGO_2_COLOR[2]);
+  fontDraw(BOARD_ROGO_2_STRING);
+  fontSetPosition(BOARD_ROGO_3_POSITION_X, BOARD_ROGO_3_POSITION_Y);
+  fontSetSize(FONT_DEFAULT_SIZE * BOARD_ROGO_3_SIZE);
+  fontSetWeight(BOARD_ROGO_3_WEIGHT);
+  fontSetColor(BOARD_ROGO_3_COLOR[0], BOARD_ROGO_3_COLOR[1], BOARD_ROGO_3_COLOR[2]);
+  fontDraw(BOARD_ROGO_3_STRING);
 
   //fps
-  fontSetPosition(550.0, 440.0);
-  fontSetSize(FONT_DEFAULT_SIZE * 0.15);
-  fontSetWeight(2.0);
-  fontSetColor(5, 5, 5);
+  fontSetPosition(BOARD_FPS_POSITION_X, BOARD_FPS_POSITION_Y);
+  fontSetSize(FONT_DEFAULT_SIZE * BOARD_FPS_SIZE);
+  fontSetWeight(BOARD_FPS_WEIGHT);
+  fontSetColor(BOARD_FPS_COLOR[0], BOARD_FPS_COLOR[1], BOARD_FPS_COLOR[2]);
   fontDraw("fps:%.1f", fpsGet());
   fontEnd();
 
@@ -37,7 +63,7 @@ void drawBoard(){
       FIELD_SIZE_X,
       FIELD_SIZE_Y,
       0.0,
-      10,
-      10,
-      10);
+      FIELD_COLOR[0],
+      FIELD_COLOR[1],
+      FIELD_COLOR[2]);
 }
