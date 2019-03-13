@@ -3,7 +3,7 @@ OBJS = \
 game.o \
 font.o \
 key.o \
-scene.o \
+sceneManager.o \
 shape/rect.o \
 shape/ball.o \
 scene/menu/sceneMenu.o \
@@ -18,7 +18,7 @@ CFLAGS = -lglut -lGLU -lGL -lm
 .SUFFIXES: .c .o
 
 $(PROGRAM): $(OBJS)
-	$(CC) $(PROGRAM).c -o $(PROGRAM) $^ $(CFLAGS)
+	$(CC) $(PROGRAM).c $^ -o $(PROGRAM) $(CFLAGS)
 
 .c.o:
 	$(CC) -c $< $(CFLAGS) -o $@
@@ -30,7 +30,7 @@ clean:
 game.o: game.h
 key.o: key.h
 font.o: font.h
-scene.o: scene.h
+sceneManager.o: sceneManager.h
 sceneMenu.o: sceneMenu.h
 sceneGame.o: sceneMenu.h
 sceneGameBoard.o: sceneGameBoard.h

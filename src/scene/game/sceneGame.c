@@ -5,7 +5,7 @@
 #include "../../player.h"
 #include "sceneGameBoard.h"
 
-static int count = 0;
+static int count;
 static unsigned char param[SCENE_PARAMETER_MAX];
 static player_t player;
 
@@ -14,6 +14,7 @@ void sceneGameInit(unsigned char *p){
     param[i] = p[i];
   playerInit(&player);
   glClearColor(0.15f, 0.15f, 0.4f, 1.0f);
+  count = 0;
 }
 
 void sceneGameUpdate(void (*changeSceneFunc)(enum eScene, unsigned char *, int)){
@@ -28,6 +29,15 @@ void sceneGameDispaly(){
   
   drawBoard();
   playerDraw(&player);
+
+  //draw count
+  fontBegin();
+  fontSetPosition(500, 50);
+  fontSetSize(FONT_DEFAULT_SIZE * 0.2f);
+  fontSetWeight(1.0f);
+  fontSetColor(255, 255, 255);
+  fontDraw("count:%d", count);
+  fontEnd();
 
   glutSwapBuffers();
 
