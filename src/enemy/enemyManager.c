@@ -42,7 +42,9 @@ void enemyManagerUpdate(){
 void enemyManagerDraw(){
   enemyNode_t **epp = &enemyList;
   while (*epp != NULL) {
-    enemyDraw[(*epp)->m_enemyData.m_type](&((*epp)->m_enemyData));
+    if ((*epp)->m_enemyData.m_flag) {
+      enemyDraw[(*epp)->m_enemyData.m_type](&((*epp)->m_enemyData));
+    }
     epp = &((*epp)->m_next);
   }
 }
