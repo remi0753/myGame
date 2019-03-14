@@ -10,6 +10,8 @@ typedef struct ball_ {
   unsigned char m_color[3];
 } ball_t;
 
+void ballBegin();
+void ballEnd();
 void ballDraw(float x, 
               float y, 
               float r, 

@@ -1,4 +1,4 @@
-#include "scene.h"
+#include "sceneManager.h"
 
 #include <GL/glut.h>
 

@@ -3,7 +3,7 @@
 #define ___HEADER_SCENEGAME
 
 
-#include "../../scene.h"
+#include "../../sceneManager.h"
 
 void sceneGameUpdate(void (*changeSceneFunc)(enum eScene, unsigned char *, int));
 void sceneGameDispaly();

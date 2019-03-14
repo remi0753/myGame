@@ -2,7 +2,7 @@
 
 #include <GL/glut.h>
 #include "define.h"
-#include "scene.h"
+#include "sceneManager.h"
 #include "allScene.h"
 #include "key.h"
 #include "fps.h"

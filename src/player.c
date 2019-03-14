@@ -40,6 +40,7 @@ void playerUpdate(player_t *player){
 }
 
 void playerDraw(const player_t *player){
+  rectBegin();
   rectDraw(player->m_x, 
            player->m_y,
            PLAYER_RECT_SIZE,
@@ -48,27 +49,36 @@ void playerDraw(const player_t *player){
            PLAYER_RECT_COLOR[0],
            PLAYER_RECT_COLOR[1],
            PLAYER_RECT_COLOR[2]);
+  rectEnd();
 
-  if (player->m_slow)
+  if (player->m_slow){
+    ballBegin();
     ballDraw(player->m_x,
              player->m_y,
              PLAYER_CENTER_BALL_R,
              PLAYER_CENTER_BALL_COLOR[0],
              PLAYER_CENTER_BALL_COLOR[1],
              PLAYER_CENTER_BALL_COLOR[2]);
+    ballEnd();
+  }
 
+  ballBegin();
   ballDraw(player->m_x - PLAYER_SIDE_BALL_POSITION,
            player->m_y,
            PLAYER_SIDE_BALL_R,
            PLAYER_SIDE_BALL_COLOR[0],
            PLAYER_SIDE_BALL_COLOR[1],
            PLAYER_SIDE_BALL_COLOR[2]);
+  ballEnd();
+
+  ballBegin();
   ballDraw(player->m_x + PLAYER_SIDE_BALL_POSITION,
            player->m_y,
            PLAYER_SIDE_BALL_R,
            PLAYER_SIDE_BALL_COLOR[0],
            PLAYER_SIDE_BALL_COLOR[1],
            PLAYER_SIDE_BALL_COLOR[2]);
+  ballEnd();
 }
 
 void move(player_t *player){
