@@ -6,6 +6,8 @@
 #include "allScene.h"
 #include "key.h"
 #include "fps.h"
+#include <GL/freeglut.h>
+#include "./enemy/enemyManager.h"
 
 static sceneStack_t stk;
 static scene_t allScene[SCENE_MAX] = {
@@ -15,6 +17,7 @@ static scene_t allScene[SCENE_MAX] = {
 
 void glInit(int *argc, char **argv);
 void gameLoop();
+void close();
 
 void gameInit(int *argc, char **argv){
   glInit(argc, argv);
@@ -44,6 +47,7 @@ void glInit(int *argc, char **argv){
   glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
   glutCreateWindow("myGame");
   glutIdleFunc(gameLoop);
+  glutCloseFunc(close);
 }
 
 void changeScene(enum eScene s, unsigned char *p, int clear){
@@ -71,4 +75,8 @@ void changeScene(enum eScene s, unsigned char *p, int clear){
 void gameLoop(){
   sceneStackTop(&stk)->m_update(changeScene);
   fpsWait();
+}
+
+void close(){
+  enemyManagerClean();
 }

@@ -23,5 +23,6 @@ typedef struct enemy_ {
 void enemyManagerInit();
 void enemyManagerUpdate();
 void enemyManagerDraw();
+void enemyManagerClean();
 
 #endif

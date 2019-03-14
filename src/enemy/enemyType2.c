@@ -4,6 +4,7 @@
 #include <GL/glut.h>
 #include "../scene/game/gameField.h"
 #include "../define.h"
+#include <math.h>
 
 const static float ENEMY_TYPE2_SIZE = 45.0f;
 const static unsigned char ENEMY_TYPE2_COLOR[3] = {250, 150, 250};
@@ -33,4 +34,8 @@ void enemyType2Draw(const enemy_t *enemy){
 
   glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
   rectEnd();
+}
+
+void enemyType2Size(float size[2]){
+  size[0] = size[1] = ENEMY_TYPE2_SIZE * sqrt(2.0);
 }

@@ -4,6 +4,8 @@
 #include <math.h>
 #include <stdlib.h>
 #include "enemyAppearance.h"
+#include "../scene/game/gameField.h"
+#include <stdio.h>
 
 typedef struct enemyNode_ {
   enemy_t m_enemyData;
@@ -15,12 +17,18 @@ const static void (*enemyDraw[enemyTypeMax])(const enemy_t *) = {
   enemyType2Draw,
 };
 
+const static void (*enemySize[enemyTypeMax])(float size[2]) = {
+  enemyType1Size,
+  enemyType2Size,
+};
+
 static enemyNode_t *enemyList;
 
 void enemyInit(const enemy_t const *e1, enemy_t *e2);
 enemyNode_t *enemyNodeNew(const enemy_t const *enemyData, enemyNode_t *next);
 int enemyNodeAppend(enemyNode_t **epp, const enemy_t const *enemy);
 void enemyUpdate(enemy_t *enemy);
+int isInside(enemy_t *enemy);
 
 void enemyManagerInit(){
   enemy_t enemy1 = {enemyType1, 1, 100.0f, -100.0f, 2.0f, M_PI / 2.0f, 0};
@@ -34,6 +42,10 @@ void enemyManagerUpdate(){
   while (*epp != NULL) {
     if ((*epp)->m_enemyData.m_flag) {
       enemyUpdate(&((*epp)->m_enemyData));
+    } else {
+      enemyNode_t *temp = (*epp)->m_next;
+      free(*epp);
+      *epp = temp;
     }
     epp = &((*epp)->m_next);
   }
@@ -41,11 +53,24 @@ void enemyManagerUpdate(){
 
 void enemyManagerDraw(){
   enemyNode_t **epp = &enemyList;
+  int num = 0;
   while (*epp != NULL) {
     if ((*epp)->m_enemyData.m_flag) {
       enemyDraw[(*epp)->m_enemyData.m_type](&((*epp)->m_enemyData));
     }
     epp = &((*epp)->m_next);
+    num++;
+  }
+  printf("enemyNum:%d\n", num);
+}
+
+void enemyManagerClean(){
+  enemyNode_t **epp = &enemyList;
+  enemyNode_t *temp;
+  while (*epp != NULL) {
+    temp = (*epp)->m_next;
+    free(*epp);
+    *epp = temp;
   }
 }
 
@@ -88,4 +113,21 @@ void enemyUpdate(enemy_t *enemy){
   enemy->m_count++;
   enemy->m_x += cos(enemy->m_angle) * enemy->m_speed;
   enemy->m_y += sin(enemy->m_angle) * enemy->m_speed;
+  if (isInside(enemy))
+    enemy->m_flag = 0;
+}
+
+int isInside(enemy_t *enemy){
+  if (enemy->m_count < 60)
+    return 0;
+
+  float size[2];
+  enemySize[enemy->m_type](size);
+  if (enemy->m_x < FIELD_START_X - size[0] / 2.0f ||
+      enemy->m_x > FIELD_START_X + FIELD_SIZE_X + size[0] / 2.0f ||
+      enemy->m_y < FIELD_START_Y - size[1] / 2.0f ||
+      enemy->m_y > FIELD_START_Y + FIELD_SIZE_Y + size[1] / 2.0f)
+    return 1;
+
+  return 0;
 }
