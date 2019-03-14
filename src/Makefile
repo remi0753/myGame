@@ -10,7 +10,10 @@ scene/menu/sceneMenu.o \
 scene/game/sceneGame.o \
 scene/game/sceneGameBoard.o \
 fps.o \
-player.o
+player.o \
+enemy/enemyManager.o \
+enemy/enemyType1.o \
+enemy/enemyType2.o
 
 CC = gcc
 CFLAGS = -lglut -lGLU -lGL -lm
@@ -38,3 +41,6 @@ fps.o: fps.h
 rect.o: rect.h
 ball.o: ball.h
 player.o: player.h
+enemyManager.o: enemyManager.h
+enemyType1.o: enemyAppearance.h
+enemyType2.o: enemyAppearance.h

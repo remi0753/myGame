@@ -3,6 +3,8 @@
 #define ___HEADER_RECT
 
 
+void rectBegin();
+void rectEnd();
 void rectDraw(float x, 
               float y, 
               float width, 

@@ -57,6 +57,7 @@ void drawBoard(){
   fontDraw("fps:%.1f", fpsGet());
   fontEnd();
 
+  rectBegin();
   rectDraw(
       FIELD_START_X + FIELD_SIZE_X / 2.0f,
       FIELD_START_Y + FIELD_SIZE_Y / 2.0f,
@@ -66,4 +67,5 @@ void drawBoard(){
       FIELD_COLOR[0],
       FIELD_COLOR[1],
       FIELD_COLOR[2]);
+  rectEnd();
 }
