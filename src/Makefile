@@ -13,18 +13,20 @@ fps.o \
 player.o \
 enemy/enemyManager.o \
 enemy/enemyType1.o \
-enemy/enemyType2.o
+enemy/enemyType2.o \
+enemy/enemyMove.o
 
 CC = gcc
 CFLAGS = -lglut -lGLU -lGL -lm
+OPTIMIZE = -O2
 
 .SUFFIXES: .c .o
 
 $(PROGRAM): $(OBJS)
-	$(CC) $(PROGRAM).c $^ -o $(PROGRAM) $(CFLAGS)
+	$(CC) $(OPTIMIZE) $(PROGRAM).c $^ -o $(PROGRAM) $(CFLAGS)
 
 .c.o:
-	$(CC) -c $< $(CFLAGS) -o $@
+	$(CC) $(OPTIMIZE) -c $< $(CFLAGS) -o $@
 
 .PHONY: clean
 clean:
@@ -44,3 +46,4 @@ player.o: player.h
 enemyManager.o: enemyManager.h
 enemyType1.o: enemyAppearance.h
 enemyType2.o: enemyAppearance.h
+enemyMove.o: enemyMove.h

@@ -18,10 +18,12 @@ typedef struct enemy_ {
   float m_speed;
   float m_angle;
   int m_count;
+  int m_movePattern;
 } enemy_t;
 
 void enemyManagerInit();
 void enemyManagerUpdate();
 void enemyManagerDraw();
+void enemyManagerClean();
 
 #endif

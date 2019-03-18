@@ -7,5 +7,7 @@
 void enemyType1Draw(const enemy_t *enemy);
 void enemyType2Draw(const enemy_t *enemy);
 
+void enemyType1Size(float size[2]);
+void enemyType2Size(float size[2]);
 
 #endif

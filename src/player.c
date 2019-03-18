@@ -26,7 +26,7 @@ static const float PLAYER_FIRST_POSITION_Y = 400.0f;
 
 static int count;
 
-void move(player_t *player);
+void playerMove(player_t *player);
 
 void playerInit(player_t *player){
   player->m_x = PLAYER_FIRST_POSITION_X;
@@ -35,7 +35,7 @@ void playerInit(player_t *player){
 }
 
 void playerUpdate(player_t *player){
-  move(player);
+  playerMove(player);
   count++;
 }
 
@@ -81,7 +81,7 @@ void playerDraw(const player_t *player){
   ballEnd();
 }
 
-void move(player_t *player){
+void playerMove(player_t *player){
   float x = 0.0f;
   float y = 0.0f;
   if (keyGetState('v'))
