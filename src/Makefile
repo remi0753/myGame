@@ -18,14 +18,15 @@ enemy/enemyMove.o
 
 CC = gcc
 CFLAGS = -lglut -lGLU -lGL -lm
+OPTIMIZE = -O2
 
 .SUFFIXES: .c .o
 
 $(PROGRAM): $(OBJS)
-	$(CC) $(PROGRAM).c $^ -o $(PROGRAM) $(CFLAGS)
+	$(CC) $(OPTIMIZE) $(PROGRAM).c $^ -o $(PROGRAM) $(CFLAGS)
 
 .c.o:
-	$(CC) -c $< $(CFLAGS) -o $@
+	$(CC) $(OPTIMIZE) -c $< $(CFLAGS) -o $@
 
 .PHONY: clean
 clean:

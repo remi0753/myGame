@@ -38,14 +38,7 @@ void enemyManagerInit(){
   enemyNodeAppend(&enemyList, &enemy2);
 }
 
-static int c = 0;
-
 void enemyManagerUpdate(){
-  c++;
-  if (c == 1000) {
-    enemy_t e = {enemyType1, 1, 100.0f, 50.0f, 2.0f, M_PI / 2.0f, 0, 0};
-    enemyNodeAppend(&enemyList, &e);
-  }
   enemyNode_t **epp = &enemyList;
   while (*epp != NULL) {
     if ((*epp)->m_enemyData.m_flag) {
