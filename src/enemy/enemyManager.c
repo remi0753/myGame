@@ -1,11 +1,12 @@
 #include "enemyManager.h"
 
 #include <GL/glut.h>
-#include <math.h>
 #include <stdlib.h>
 #include "enemyAppearance.h"
 #include "../scene/game/gameField.h"
 #include <stdio.h>
+#include "enemyMove.h"
+#include <math.h>
 
 typedef struct enemyNode_ {
   enemy_t m_enemyData;
@@ -31,21 +32,34 @@ void enemyUpdate(enemy_t *enemy);
 int isInside(enemy_t *enemy);
 
 void enemyManagerInit(){
-  enemy_t enemy1 = {enemyType1, 1, 100.0f, -100.0f, 2.0f, M_PI / 2.0f, 0};
-  enemy_t enemy2 = {enemyType2, 1, 200.0f, 100.0f, 0.0f, 0.0f, 0};
+  enemy_t enemy1 = {enemyType1, 1, 100.0f, -100.0f, 2.0f, M_PI / 2.0f, 0, 0};
+  enemy_t enemy2 = {enemyType2, 1, 200.0f, 100.0f, 0.0f, 0.0f, 0, 0};
   enemyNodeAppend(&enemyList, &enemy1);
   enemyNodeAppend(&enemyList, &enemy2);
 }
 
+static int c = 0;
+
 void enemyManagerUpdate(){
+  c++;
+  if (c == 1000) {
+    enemy_t e = {enemyType1, 1, 100.0f, 50.0f, 2.0f, M_PI / 2.0f, 0, 0};
+    enemyNodeAppend(&enemyList, &e);
+  }
   enemyNode_t **epp = &enemyList;
   while (*epp != NULL) {
     if ((*epp)->m_enemyData.m_flag) {
       enemyUpdate(&((*epp)->m_enemyData));
     } else {
-      enemyNode_t *temp = (*epp)->m_next;
-      free(*epp);
-      *epp = temp;
+      if ((*epp)->m_next != NULL) {
+        enemyNode_t *temp = (*epp)->m_next;
+        free(*epp);
+        *epp = temp;
+      } else {
+        free(*epp);
+        enemyList = NULL;
+        break;
+      }
     }
     epp = &((*epp)->m_next);
   }
@@ -57,9 +71,9 @@ void enemyManagerDraw(){
   while (*epp != NULL) {
     if ((*epp)->m_enemyData.m_flag) {
       enemyDraw[(*epp)->m_enemyData.m_type](&((*epp)->m_enemyData));
+      num++;
     }
     epp = &((*epp)->m_next);
-    num++;
   }
   printf("enemyNum:%d\n", num);
 }
@@ -82,6 +96,7 @@ void enemyInit(const enemy_t const *e1, enemy_t *e2){
   e2->m_speed = e1->m_speed;
   e2->m_angle = e1->m_angle;
   e2->m_count = e1->m_count;
+  e2->m_movePattern = e1->m_movePattern;
 }
 
 enemyNode_t *enemyNodeNew(const enemy_t const *enemyData, enemyNode_t *next){
@@ -93,7 +108,7 @@ enemyNode_t *enemyNodeNew(const enemy_t const *enemyData, enemyNode_t *next){
   enemyInit(enemyData, &(ep->m_enemyData));
   ep->m_next = next;
   
-  return ep;;
+  return ep;
 }
 
 int enemyNodeAppend(enemyNode_t **epp, const enemy_t const *enemy){
@@ -110,9 +125,8 @@ int enemyNodeAppend(enemyNode_t **epp, const enemy_t const *enemy){
 }
 
 void enemyUpdate(enemy_t *enemy){
+  enemyMove(enemy);
   enemy->m_count++;
-  enemy->m_x += cos(enemy->m_angle) * enemy->m_speed;
-  enemy->m_y += sin(enemy->m_angle) * enemy->m_speed;
   if (isInside(enemy))
     enemy->m_flag = 0;
 }

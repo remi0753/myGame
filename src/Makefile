@@ -13,7 +13,8 @@ fps.o \
 player.o \
 enemy/enemyManager.o \
 enemy/enemyType1.o \
-enemy/enemyType2.o
+enemy/enemyType2.o \
+enemy/enemyMove.o
 
 CC = gcc
 CFLAGS = -lglut -lGLU -lGL -lm
@@ -44,3 +45,4 @@ player.o: player.h
 enemyManager.o: enemyManager.h
 enemyType1.o: enemyAppearance.h
 enemyType2.o: enemyAppearance.h
+enemyMove.o: enemyMove.h
