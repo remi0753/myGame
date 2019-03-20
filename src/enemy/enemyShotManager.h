@@ -6,6 +6,7 @@
 void enemyShotManagerInit();
 void enemyShotManagerUpdate();
 void enemyShotManagerDraw();
+void enemyShotManagerClean();
 
 
 #endif

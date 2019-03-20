@@ -6,10 +6,9 @@
 #include "enemyInfo.h"
 
 void enemyShareSetEnemyStack(enemyNode_t **mainEnemyList);
-const enemyNode_t* const enemyShareGetEnemyStack();
-
 void enemyShareSetEnemyShotStack(enemyShotNode_t **mainEnemyShotList);
 
+void enemyShareGetEnemyPosition(float p[2], int id);
 void enemyShareEnterEnemyShot(const enemy_t* const enemy);
 
 #endif

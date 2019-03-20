@@ -29,11 +29,26 @@ typedef struct enemyNode_ {
   struct enemyNode_ *m_next; 
 } enemyNode_t;
 
+typedef struct enemyBullet_ {
+  float m_x;
+  float m_y;
+  float m_angle;
+  float m_speed;
+  int m_count;
+  int m_flag;
+} enemyBullet_t;
+
+typedef struct enemyBulletNode_ {
+  enemyBullet_t m_bulletData;
+  struct enemyBulletNode_ *m_next;
+} enemyBulletNode_t;
+
 typedef struct enemyShot_ {
   int m_pattern;
   int m_enemyId;
   int m_count;
   int m_status;
+  enemyBulletNode_t *m_bulletList;
 } enemyShot_t;
 
 typedef struct enemyShotNode_ {
@@ -42,8 +57,12 @@ typedef struct enemyShotNode_ {
 } enemyShotNode_t;
 
 
-int enemyNodeAppend(enemyNode_t **epp, const enemy_t const *enemy);
-int enemyShotNodeAppend(enemyShotNode_t **epp, const enemyShot_t const *shot);
+int enemyNodeAppend(enemyNode_t **epp, const enemy_t* const enemy);
+void enemyNodeFree(enemyNode_t **epp);
+int enemyShotNodeAppend(enemyShotNode_t **epp, const enemyShot_t* const shot);
+void enemyShotNodeFree(enemyShotNode_t **epp);
+int enemyBulletNodeAppend(enemyBulletNode_t **epp, const enemyBullet_t* const bullet);
+void enemyBulletNodeFree(enemyBulletNode_t **epp);
 
 
 #endif

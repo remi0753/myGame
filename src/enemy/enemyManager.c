@@ -78,13 +78,7 @@ void enemyManagerDraw(){
 }
 
 void enemyManagerClean(){
-  enemyNode_t **epp = &enemyList;
-  enemyNode_t *temp;
-  while (*epp != NULL) {
-    temp = (*epp)->m_next;
-    free(*epp);
-    *epp = temp;
-  }
+  enemyNodeFree(&enemyList);
 }
 
 void enemyUpdate(enemy_t *enemy){
