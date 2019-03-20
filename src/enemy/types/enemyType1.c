@@ -1,9 +1,9 @@
 #include "enemyAppearance.h"
 
-#include "../shape/rect.h"
+#include "../../shape/rect.h"
 #include <GL/glut.h>
-#include "../scene/game/gameField.h"
-#include "../define.h"
+#include "../../scene/game/gameField.h"
+#include "../../define.h"
 #include <math.h>
 
 const static float ENEMY_TYPE1_SIZE = 25.0f;

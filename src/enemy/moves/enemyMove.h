@@ -2,7 +2,7 @@
 
 #define ___HEADER_ENEMYMOVE
 
-#include "enemyManager.h"
+#include "../enemyInfo.h"
 void enemyMove(enemy_t *enemy);
 
 
