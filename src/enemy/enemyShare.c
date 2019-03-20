@@ -28,6 +28,17 @@ void enemyShareGetEnemyPosition(float p[2], int id){
   return;
 }
 
+int enemyShareGetEnemyFlag(int id){
+  enemyNode_t **epp = copyEnemyList;
+  while (*epp != NULL) {
+    if ((*epp)->m_enemyData.m_id == id) {
+      return (*epp)->m_enemyData.m_flag;
+    }
+    epp = &((*epp)->m_next);
+  }
+  return 0;
+}
+
 void enemyShareEnterEnemyShot(const enemy_t* const enemy){
   enemyShot_t s = {
     enemy->m_shotPattern,

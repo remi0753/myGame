@@ -50,3 +50,8 @@ void sceneGameDispaly(){
   glutSwapBuffers();
 
 }
+
+void sceneGameClean(){
+  enemyShotManagerClean();
+  enemyManagerClean();
+}
