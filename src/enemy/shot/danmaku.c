@@ -1,6 +1,6 @@
 #include "danmaku.h"
 
-#include "../enemyShare.h"
+#include "../share/enemyShare.h"
 #include <math.h>
 /*
   float m_x;

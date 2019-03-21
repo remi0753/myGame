@@ -7,7 +7,7 @@
 #include "./moves/enemyMove.h"
 #include "enemyInfo.h"
 #include <math.h>
-#include "enemyShare.h"
+#include "./share/enemyShare.h"
 
 const static void (*enemyDraw[enemyTypeMax])(const enemy_t *) = {
   enemyType1Draw,

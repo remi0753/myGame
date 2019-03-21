@@ -1,7 +1,7 @@
 #include "enemyShotManager.h"
 
 #include "../enemyInfo.h"
-#include "../enemyShare.h"
+#include "../share/enemyShare.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

@@ -1,6 +1,6 @@
 #include "enemyShare.h"
 
-#include "enemyInfo.h"
+#include "../enemyInfo.h"
 #include <stdio.h>
 
 static enemyNode_t **copyEnemyList;

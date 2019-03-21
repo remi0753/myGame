@@ -3,7 +3,7 @@
 #define ___HEADER_ENEMYSHARE
 
 
-#include "enemyInfo.h"
+#include "../enemyInfo.h"
 
 void enemyShareSetEnemyStack(enemyNode_t **mainEnemyList);
 void enemyShareSetEnemyShotStack(enemyShotNode_t **mainEnemyShotList);

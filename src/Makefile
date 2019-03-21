@@ -13,7 +13,7 @@ fps.o \
 player.o \
 enemy/enemyManager.o \
 enemy/enemyInfo.o \
-enemy/enemyShare.o \
+enemy/share/enemyShare.o \
 enemy/types/enemyType1.o \
 enemy/types/enemyType2.o \
 enemy/moves/enemyMove.o \
