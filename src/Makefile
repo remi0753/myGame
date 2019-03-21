@@ -17,7 +17,9 @@ enemy/enemyShare.o \
 enemy/types/enemyType1.o \
 enemy/types/enemyType2.o \
 enemy/moves/enemyMove.o \
-enemy/enemyShotManager.o
+enemy/enemyShotManager.o \
+enemy/danmaku.o \
+enemy/enemyBullet.o
 
 CC = gcc
 CFLAGS = -lglut -lGLU -lGL -lm
@@ -53,3 +55,5 @@ enemyType1.o: enemyAppearance.h enemyInfo.h
 enemyType2.o: enemyAppearance.h enemyInfo.h
 enemyMove.o: enemyMove.h enemyInfo.h
 enemyShotManager.o: enemyShotManager.h enemyInfo.h
+danmaku.o: danmaku.h enemyInfo.h
+enemyBullet.o: enemyBullet.h enemyInfo.h

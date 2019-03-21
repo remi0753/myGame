@@ -45,7 +45,7 @@ void enemyShotCopy(const enemyShot_t const *s1, enemyShot_t *s2){
   s2->m_pattern = s1->m_pattern;
   s2->m_enemyId = s1->m_enemyId;
   s2->m_count = s1->m_count;
-  s2->m_status = s1->m_count;
+  s2->m_status = s1->m_status;
   s2->m_bulletList = NULL;
 }
 

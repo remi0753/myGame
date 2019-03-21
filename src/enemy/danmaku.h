@@ -3,7 +3,8 @@
 #define ___HEADER_DANMAKU
 
 
-void danmaku(int pattern);
+#include "enemyInfo.h"
+void danmaku(enemyShot_t *shot);
 
 
 #endif

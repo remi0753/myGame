@@ -38,7 +38,7 @@ int isInside(enemy_t *enemy);
   */
 void enemyManagerInit(){
   enemyShareSetEnemyStack(&enemyList);
-  enemy_t enemy1 = {enemyType1, 1, 100.0f, -100.0f, 2.0f, M_PI / 2.0f, 0, 0, 0, 0, 200};
+  enemy_t enemy1 = {enemyType1, 1, 100.0f, -100.0f, 2.0f, M_PI / 2.0f, 0, 0, 1, 0, 100};
   enemy_t enemy2 = {enemyType2, 1, 200.0f, 100.0f, 0.0f, 0.0f, 0, 0, 0, 1, 200};
   enemyNodeAppend(&enemyList, &enemy1);
   enemyNodeAppend(&enemyList, &enemy2);
