@@ -5,7 +5,7 @@
 #include "../../player.h"
 #include "sceneGameBoard.h"
 #include "../../enemy/enemyManager.h"
-#include "../../enemy/enemyShotManager.h"
+#include "../../enemy/shot/enemyShotManager.h"
 #include <stdio.h>
 static int count;
 static unsigned char param[SCENE_PARAMETER_MAX];

@@ -17,9 +17,9 @@ enemy/enemyShare.o \
 enemy/types/enemyType1.o \
 enemy/types/enemyType2.o \
 enemy/moves/enemyMove.o \
-enemy/enemyShotManager.o \
-enemy/danmaku.o \
-enemy/enemyBullet.o
+enemy/shot/enemyShotManager.o \
+enemy/shot/danmaku.o \
+enemy/shot/enemyBullet.o
 
 CC = gcc
 CFLAGS = -lglut -lGLU -lGL -lm

@@ -1,13 +1,13 @@
 #include "enemyShotManager.h"
 
-#include "enemyInfo.h"
-#include "enemyShare.h"
+#include "../enemyInfo.h"
+#include "../enemyShare.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "danmaku.h"
 #include "enemyBullet.h"
-#include "../scene/game/gameField.h"
+#include "../../scene/game/gameField.h"
 
 static enemyShotNode_t *enemyShotList;
 

@@ -3,7 +3,7 @@
 #define ___HEADER_ENEMYBULLET
 
 
-#include "enemyInfo.h"
+#include "../enemyInfo.h"
 
 void drawBullet(enemyBullet_t *bullet);
 

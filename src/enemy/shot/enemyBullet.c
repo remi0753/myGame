@@ -1,8 +1,8 @@
 #include "enemyBullet.h"
 
-#include "../shape/rect.h"
-#include "../scene/game/gameField.h"
-#include "../define.h"
+#include "../../shape/rect.h"
+#include "../../scene/game/gameField.h"
+#include "../../define.h"
 #include <GL/glut.h>
 
 static const float ENEMY_BULLET_WIDTH = 8.0f;
