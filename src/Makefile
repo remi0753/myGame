@@ -12,9 +12,14 @@ scene/game/sceneGameBoard.o \
 fps.o \
 player.o \
 enemy/enemyManager.o \
-enemy/enemyType1.o \
-enemy/enemyType2.o \
-enemy/enemyMove.o
+enemy/enemyInfo.o \
+enemy/share/enemyShare.o \
+enemy/types/enemyType1.o \
+enemy/types/enemyType2.o \
+enemy/moves/enemyMove.o \
+enemy/shot/enemyShotManager.o \
+enemy/shot/danmaku.o \
+enemy/shot/enemyBullet.o
 
 CC = gcc
 CFLAGS = -lglut -lGLU -lGL -lm
@@ -43,7 +48,12 @@ fps.o: fps.h
 rect.o: rect.h
 ball.o: ball.h
 player.o: player.h
-enemyManager.o: enemyManager.h
-enemyType1.o: enemyAppearance.h
-enemyType2.o: enemyAppearance.h
-enemyMove.o: enemyMove.h
+enemyManager.o: enemyManager.h enemyInfo.h
+enemyInfo.o: enemyInfo.h
+enemyShare.o: enemyShare.h enemyInfo.h
+enemyType1.o: enemyAppearance.h enemyInfo.h
+enemyType2.o: enemyAppearance.h enemyInfo.h
+enemyMove.o: enemyMove.h enemyInfo.h
+enemyShotManager.o: enemyShotManager.h enemyInfo.h
+danmaku.o: danmaku.h enemyInfo.h
+enemyBullet.o: enemyBullet.h enemyInfo.h

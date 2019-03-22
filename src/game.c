@@ -7,7 +7,6 @@
 #include "key.h"
 #include "fps.h"
 #include <GL/freeglut.h>
-#include "./enemy/enemyManager.h"
 
 static sceneStack_t stk;
 static scene_t allScene[SCENE_MAX] = {
@@ -78,5 +77,5 @@ void gameLoop(){
 }
 
 void close(){
-  enemyManagerClean();
+  sceneGameClean();
 }

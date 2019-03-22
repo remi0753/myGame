@@ -5,6 +5,7 @@
 #include "../../player.h"
 #include "sceneGameBoard.h"
 #include "../../enemy/enemyManager.h"
+#include "../../enemy/shot/enemyShotManager.h"
 #include <stdio.h>
 static int count;
 static unsigned char param[SCENE_PARAMETER_MAX];
@@ -15,6 +16,7 @@ void sceneGameInit(unsigned char *p){
     param[i] = p[i];
   playerInit(&player);
   enemyManagerInit();
+  enemyShotManagerInit();
   glClearColor(0.15f, 0.15f, 0.4f, 1.0f);
   count = 0;
 }
@@ -24,6 +26,7 @@ void sceneGameUpdate(void (*changeSceneFunc)(enum eScene, unsigned char *, int))
   count++;
   playerUpdate(&player);
   enemyManagerUpdate();
+  enemyShotManagerUpdate();
   glutPostRedisplay();
 }
 
@@ -33,6 +36,7 @@ void sceneGameDispaly(){
   drawBoard();
   playerDraw(&player);
   enemyManagerDraw();
+  enemyShotManagerDraw();
 
   //draw count
   fontBegin();
@@ -45,4 +49,9 @@ void sceneGameDispaly(){
 
   glutSwapBuffers();
 
+}
+
+void sceneGameClean(){
+  enemyShotManagerClean();
+  enemyManagerClean();
 }
